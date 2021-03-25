@@ -4,6 +4,7 @@ import { ipfs, ipfsHttpsBaseUrl } from "../../modules/ipfs";
 import { getFileType } from "../../modules/util";
 import { ImageUploadIcon } from "../atoms/ImageUploadIcon";
 import { Label } from "../atoms/Label";
+import { ModelViewer } from "../atoms/ModelViewer";
 
 export interface FormImageUploadProps {
   label: string;
@@ -100,6 +101,10 @@ export const FormImageUpload: React.FC<FormImageUploadProps> = ({ label, value, 
                     <video className="rounded-md h-full object-cover mx-auto" controls>
                       <source src={imagePreview} type="video/mp4" />
                     </video>
+                  </div>
+                ) : type == "glb" ? (
+                  <div className="h-32 w-64 m-4">
+                    <ModelViewer src={imagePreview} />
                   </div>
                 ) : (
                   <div className={`h-20 w-20 m-10 ${isImageLoading && "opacity-25 animate-bounce"}`}>
